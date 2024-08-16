@@ -14,97 +14,97 @@ import java.util.List;
 @Entity
 @Table(name = "ordenes")
 public class Orden {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String numero;
-    private Date fechaCreación;
-    private Date fechaRecibida;
-    
-    private double total;
-    
-    @ManyToOne
-    private Usuario usuario;
-    
-    @OneToMany(mappedBy = "orden")
-    private List<DetalleOrden> detalle;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	private String numero;
+	private Date fechaCreación;
+	private Date fechaRecibida;
 
-    public Orden() {
-    }
+	private double total;
 
-    public Orden(Integer id, String numero, Date fechaCreación, Date fechaRecibida, double total, Usuario usuario,
-                 List<DetalleOrden> detalle) {
-        super();
-        this.id = id;
-        this.numero = numero;
-        this.fechaCreación = fechaCreación;
-        this.fechaRecibida = fechaRecibida;
-        this.total = total;
-        this.usuario = usuario;
-        this.detalle = detalle;
-    }
+	@ManyToOne
+	private Usuario usuario;
 
-    // Getters and setters
+	@OneToMany(mappedBy = "orden")
+	private List<DetalleOrden> detalle;
 
-    public Integer getId() {
-        return id;
-    }
+	public Orden() {
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public Orden(Integer id, String numero, Date fechaCreación, Date fechaRecibida, double total, Usuario usuario,
+			List<DetalleOrden> detalle) {
+		super();
+		this.id = id;
+		this.numero = numero;
+		this.fechaCreación = fechaCreación;
+		this.fechaRecibida = fechaRecibida;
+		this.total = total;
+		this.usuario = usuario;
+		this.detalle = detalle;
+	}
 
-    public String getNumero() {
-        return numero;
-    }
+	// Getters and setters
 
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public Date getFechaCreación() {
-        return fechaCreación;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public void setFechaCreación(Date fechaCreación) {
-        this.fechaCreación = fechaCreación;
-    }
+	public String getNumero() {
+		return numero;
+	}
 
-    public Date getFechaRecibida() {
-        return fechaRecibida;
-    }
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
 
-    public void setFechaRecibida(Date fechaRecibida) {
-        this.fechaRecibida = fechaRecibida;
-    }
+	public Date getFechaCreación() {
+		return fechaCreación;
+	}
 
-    public double getTotal() {
-        return total;
-    }
+	public void setFechaCreación(Date fechaCreación) {
+		this.fechaCreación = fechaCreación;
+	}
 
-    public void setTotal(double total) {
-        this.total = total;
-    }
+	public Date getFechaRecibida() {
+		return fechaRecibida;
+	}
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
+	public void setFechaRecibida(Date fechaRecibida) {
+		this.fechaRecibida = fechaRecibida;
+	}
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
+	public double getTotal() {
+		return total;
+	}
 
-    public List<DetalleOrden> getDetalle() {
-        return detalle;
-    }
+	public void setTotal(double total) {
+		this.total = total;
+	}
 
-    public void setDetalle(List<DetalleOrden> detalle) {
-        this.detalle = detalle;
-    }
+	public Usuario getUsuario() {
+		return usuario;
+	}
 
-    @Override
-    public String toString() {
-        return "Orden [id=" + id + ", numero=" + numero + ", fechaCreación=" + fechaCreación + ", fechaRecibida="
-                + fechaRecibida + ", total=" + total + ", usuario=" + usuario + ", detalle=" + detalle + "]";
-    }
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public List<DetalleOrden> getDetalle() {
+		return detalle;
+	}
+
+	public void setDetalle(List<DetalleOrden> detalle) {
+		this.detalle = detalle;
+	}
+
+	@Override
+	public String toString() {
+		return "Orden [id=" + id + ", numero=" + numero + ", fechaCreación=" + fechaCreación + ", fechaRecibida="
+				+ fechaRecibida + ", total=" + total + ", usuario=" + usuario + ", detalle=" + detalle + "]";
+	}
 }
