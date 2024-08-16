@@ -25,6 +25,8 @@ import com.diego.ecommerce.service.IOrdenService;
 import com.diego.ecommerce.service.IUsuarioService;
 import com.diego.ecommerce.service.ProductoService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/")
 public class HomeController {
@@ -50,7 +52,8 @@ public class HomeController {
 	Orden orden = new Orden();
 
 	@GetMapping("")
-	public String home(Model model) {
+	public String home(Model model, HttpSession session) {
+		log.info("Sesion del usuario: {}", session.getAttribute("idusuario"));
 		model.addAttribute("productos", productoService.findAll());
 
 		return "usuario/home";
@@ -131,9 +134,9 @@ public class HomeController {
 	}
 
 	@GetMapping("/order")
-	public String order(Model model) {
+	public String order(Model model, HttpSession session) {
 
-		Usuario usuario = usuarioService.findById(1).get();
+		Usuario usuario = usuarioService.findById( Integer.parseInt(session.getAttribute("idusuario").toString())).get();
 
 		model.addAttribute("cart", detalles);
 		model.addAttribute("orden", orden);
@@ -144,14 +147,14 @@ public class HomeController {
 
 	// Guardar la orden
 	@GetMapping("/saveOrder")
-	public String saveOrder() {
+	public String saveOrder(HttpSession session) {
 
 		Date fechaCreacion = new Date();
 		orden.setFechaCreación(fechaCreacion);
 		orden.setNumero(ordenService.generarNumeroOrden());
 
 		// Usuario
-		Usuario usuario = usuarioService.findById(1).get();
+		Usuario usuario = usuarioService.findById(Integer.parseInt(session.getAttribute("idusuario").toString())).get();
 
 		orden.setUsuario(usuario);
 		ordenService.save(orden);
